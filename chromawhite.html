@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChromaWhite - Purple Whitening Strips</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple-deep: #4a1a5c;
+            --purple-primary: #7b2cbf;
+            --purple-bright: #9d4edd;
+            --purple-light: #c77dff;
+            --purple-ultra: #e0aaff;
+            --white: #ffffff;
+            --cream: #fef8ff;
+            --shadow: rgba(123, 44, 191, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--purple-deep);
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--purple-ultra) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, var(--purple-light) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, var(--purple-bright) 0%, transparent 60%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--purple-deep);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--purple-bright);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--purple-bright);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-bright));
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 80vh;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-content h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--purple-deep);
+            letter-spacing: -2px;
+        }
+
+        .hero-content .gradient-text {
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-bright), var(--purple-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            color: var(--purple-deep);
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--purple-primary);
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--purple-primary);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            background: var(--purple-primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Product Showcase */
+        .product-showcase {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-circle {
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple-ultra), var(--white));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                0 30px 60px var(--shadow),
+                inset 0 -20px 40px rgba(123, 44, 191, 0.1);
+            animation: rotate 20s linear infinite, pulse 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 30px 60px var(--shadow), inset 0 -20px 40px rgba(123, 44, 191, 0.1); }
+            50% { box-shadow: 0 40px 80px var(--shadow), inset 0 -30px 60px rgba(123, 44, 191, 0.2); }
+        }
+
+        .product-box {
+            width: 200px;
+            height: 280px;
+            background: linear-gradient(180deg, var(--purple-primary), var(--purple-bright));
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            animation: productFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes productFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(-3deg); }
+        }
+
+        .product-box::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 60px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        .product-box span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 5%;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 40%;
+            height: 150%;
+            background: radial-gradient(circle, var(--purple-ultra) 0%, transparent 70%);
+            opacity: 0.3;
+            animation: floatLeft 15s ease-in-out infinite;
+        }
+
+        @keyframes floatLeft {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, -50px); }
+        }
+
+        .features h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--purple-deep);
+        }
+
+        .features-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--purple-primary);
+            margin-bottom: 4rem;
+            opacity: 0.9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            position: relative;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, var(--cream), var(--white));
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(123, 44, 191, 0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(123, 44, 191, 0.15);
+            border-color: var(--purple-ultra);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-bright));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            color: var(--white);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .feature-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--purple-deep);
+        }
+
+        .feature-card p {
+            line-height: 1.7;
+            color: var(--purple-deep);
+            opacity: 0.8;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--purple-primary), var(--purple-bright));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Testimonial Section */
+        .testimonial {
+            padding: 6rem 5%;
+            background: var(--cream);
+        }
+
+        .testimonial h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--purple-deep);
+        }
+
+        .testimonial-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(123, 44, 191, 0.1);
+            position: relative;
+        }
+
+        .quote-mark {
+            font-size: 6rem;
+            color: var(--purple-ultra);
+            line-height: 0;
+            position: absolute;
+            top: 2rem;
+            left: 3rem;
+            opacity: 0.5;
+        }
+
+        .testimonial-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--purple-deep);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--purple-primary);
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            background: var(--purple-deep);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--purple-ultra);
+        }
+
+        footer p {
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--purple-bright);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <header>
+        <div class="logo">ChromaWhite</div>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#results">Results</a>
+            <a href="#reviews">Reviews</a>
+            <button class="cta-btn" onclick="window.location.href='product.html'">Shop Now</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Your Brightest<br>
+                <span class="gradient-text">Smile Awaits</span>
+            </h1>
+            <p>
+                Experience professional-grade teeth whitening at home with ChromaWhite's revolutionary purple whitening strips. Gentle, effective, and designed for stunning results.
+            </p>
+            <div class="hero-buttons">
+                <button class="cta-btn" onclick="window.location.href='product.html'">Get Started</button>
+                <button class="secondary-btn" onclick="window.location.href='#features'">Learn More</button>
+            </div>
+        </div>
+        <div class="product-showcase">
+            <div class="product-circle">
+                <div class="product-box">
+                    <span>ChromaWhite</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2>Why ChromaWhite?</h2>
+        <p class="features-subtitle">Science-backed whitening powered by purple technology</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Purple Power</h3>
+                <p>Our proprietary purple formula neutralizes yellow tones, revealing a brighter, more radiant smile instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Gentle Formula</h3>
+                <p>Enamel-safe ingredients ensure effective whitening without sensitivity or damage to your teeth.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Results</h3>
+                <p>See visible whitening in just 3 days with our accelerated brightening technology.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats" id="results">
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 3rem; margin-bottom: 1rem;">Proven Results</h2>
+        <p style="font-size: 1.2rem; opacity: 0.9;">Join thousands of satisfied smilers</p>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h4>98%</h4>
+                <p>Satisfaction Rate</p>
+            </div>
+            <div class="stat-item">
+                <h4>3-5</h4>
+                <p>Shades Whiter</p>
+            </div>
+            <div class="stat-item">
+                <h4>50K+</h4>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat-item">
+                <h4>14</h4>
+                <p>Day Treatment</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial" id="reviews">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-card">
+            <div class="quote-mark">"</div>
+            <p class="testimonial-text">
+                ChromaWhite completely transformed my smile! I was skeptical at first, but after just one week, I noticed a dramatic difference. The purple strips are easy to use and don't cause any sensitivity. I'm obsessed!
+            </p>
+            <p class="testimonial-author">— Sarah M., Verified Customer</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">ChromaWhite</div>
+            <p>Transform your smile with the power of purple. Professional whitening results from the comfort of home.</p>
+            <button class="cta-btn" onclick="window.location.href='product.html'">Start Your Journey</button>
+            <div class="social-links">
+                <a href="#">📘</a>
+                <a href="#">📸</a>
+                <a href="#">🐦</a>
+                <a href="#">💼</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
